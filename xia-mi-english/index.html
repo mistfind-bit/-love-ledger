@@ -240,7 +240,7 @@ function speak(text,lang){
 function encSpeech(s){return encodeURIComponent(s).replace(/'/g,"%27");}
 function lessonHTML(key){
  const L=lessons[key];
- return '<div class="hero"><h1>'+L.title+'</h1><div class="sub">先看、先聽、理解後再做題，不急著背。</div><div class="row" style="margin-top:10px"><button class="btn light" onclick="speak('Hello, Xiamie! Let us learn English together.','en-US')">🔊 測試英文</button><button class="btn light" onclick="speak('蝦米，我們一起學英文吧！','zh-TW')">🔊 測試中文</button></div></div>'+
+ return '<div class="hero"><h1>'+L.title+'</h1><div class="sub">先看、先聽、理解後再做題，不急著背。</div><div class="row" style="margin-top:10px"><button class="btn light" onclick="speak(&quot;Hello, Xiamie! Let us learn English together.&quot;,&quot;en-US&quot;)">🔊 測試英文</button><button class="btn light" onclick="speak(&quot;蝦米，我們一起學英文吧！&quot;,&quot;zh-TW&quot;)">🔊 測試中文</button></div></div>'+
  L.sections.map(s=>'<section class="lessonblock"><h2>'+s[0]+'</h2>'+s[1].map(x=>'<div class="line"><div class="row"><span class="en">'+x[0]+'</span><button class="speak" onclick="speak(decodeURIComponent(\''+encSpeech(x[0])+'\'),\'en-US\')">🔊 英</button><button class="speak" onclick="speak(decodeURIComponent(\''+encSpeech(x[1])+'\'),\'zh-TW\')">🔊 中</button></div><div class="zh">'+x[1]+'</div></div>').join('')+'</section>').join('');
 }
 function home(){
