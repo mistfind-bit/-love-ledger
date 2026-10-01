@@ -211,37 +211,17 @@ let state = JSON.parse(localStorage.getItem("xiaMiEnglishProgress")||'{"done":0,
 let currentView="home", selectedLesson="all";
 
 function save(){localStorage.setItem("xiaMiEnglishProgress",JSON.stringify(state));document.getElementById("streak").textContent="今日："+(state.today||0)+" 題";}
-let speechReady=false;
-function getVoice(lang){
-  const vs=speechSynthesis.getVoices();
-  return lang==="zh-TW"
-    ? (vs.find(v=>v.lang==="zh-TW")||vs.find(v=>v.lang.startsWith("zh")))
-    : (vs.find(v=>v.lang==="en-US")||vs.find(v=>v.lang==="en-GB")||vs.find(v=>v.lang.startsWith("en")));
-}
 function speak(text,lang){
-  if(!("speechSynthesis" in window)){alert("這個瀏覽器目前不支援朗讀功能。請改用 Chrome 或 Edge。");return;}
-  const run=()=>{
-    speechSynthesis.cancel();
-    const u=new SpeechSynthesisUtterance(text);
-    u.lang=lang;
-    const pref=getVoice(lang); if(pref)u.voice=pref;
-    u.rate=.88;u.pitch=1;u.volume=1;
-    u.onerror=(e)=>{console.error("TTS error",e);alert("朗讀啟動失敗，請先點一下頁面後再試，或改用 Chrome / Edge。");};
-    speechSynthesis.resume();
-    speechSynthesis.speak(u);
-  };
-  if(speechSynthesis.getVoices().length){run();}
-  else{
-    const once=()=>{speechSynthesis.removeEventListener("voiceschanged",once);run();};
-    speechSynthesis.addEventListener("voiceschanged",once);
-    setTimeout(run,500);
-  }
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);u.lang=lang;
+  const vs=speechSynthesis.getVoices();
+  const pref=lang==="zh-TW"?vs.find(v=>v.lang==="zh-TW")||vs.find(v=>v.lang.startsWith("zh")):vs.find(v=>v.lang==="en-US")||vs.find(v=>v.lang==="en-GB")||vs.find(v=>v.lang.startsWith("en"));
+  if(pref)u.voice=pref;u.rate=.88;speechSynthesis.speak(u);
 }
-function encSpeech(s){return encodeURIComponent(s).replace(/'/g,"%27");}
 function lessonHTML(key){
  const L=lessons[key];
- return '<div class="hero"><h1>'+L.title+'</h1><div class="sub">先看、先聽、理解後再做題，不急著背。</div><div class="row" style="margin-top:10px"><button class="btn light" onclick="speak(&quot;Hello, Xiamie! Let us learn English together.&quot;,&quot;en-US&quot;)">🔊 測試英文</button><button class="btn light" onclick="speak(&quot;蝦米，我們一起學英文吧！&quot;,&quot;zh-TW&quot;)">🔊 測試中文</button></div></div>'+
- L.sections.map(s=>'<section class="lessonblock"><h2>'+s[0]+'</h2>'+s[1].map(x=>'<div class="line"><div class="row"><span class="en">'+x[0]+'</span><button class="speak" onclick="speak(decodeURIComponent(\''+encSpeech(x[0])+'\'),\'en-US\')">🔊 英</button><button class="speak" onclick="speak(decodeURIComponent(\''+encSpeech(x[1])+'\'),\'zh-TW\')">🔊 中</button></div><div class="zh">'+x[1]+'</div></div>').join('')+'</section>').join('');
+ return '<div class="hero"><h1>'+L.title+'</h1><div class="sub">先看、先聽、理解後再做題，不急著背。</div></div>'+
+ L.sections.map(s=>'<section class="lessonblock"><h2>'+s[0]+'</h2>'+s[1].map(x=>'<div class="line"><div class="row"><span class="en">'+x[0]+'</span><button class="speak" onclick="speak('+JSON.stringify(x[0])+',\'en-US\')">🔊 英</button><button class="speak" onclick="speak('+JSON.stringify(x[1])+',\'zh-TW\')">🔊 中</button></div><div class="zh">'+x[1]+'</div></div>').join('')+'</section>').join('');
 }
 function home(){
  const pct=state.done?Math.round(state.correct/state.done*100):0;
