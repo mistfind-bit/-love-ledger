@@ -301,40 +301,38 @@ let speechToken=0;
 function speak(text,lang){
  if(!("speechSynthesis" in window)){alert("這個瀏覽器沒有提供語音功能。");return}
  const syn=window.speechSynthesis;
- const token=++speechToken;
  const raw=String(text==null?"":text).trim();
  if(!raw)return;
- const chunks=raw.match(/[^.!?。！？；;]+[.!?。！？；;]?/g)?.map(s=>s.trim()).filter(Boolean)||[raw];
- const vs=voiceCache.length?voiceCache:syn.getVoices();
- const pref=lang==="zh-TW"?(vs.find(v=>v.lang==="zh-TW")||vs.find(v=>v.lang&&v.lang.startsWith("zh"))):(vs.find(v=>v.lang==="en-US")||vs.find(v=>v.lang==="en-GB")||vs.find(v=>v.lang&&v.lang.startsWith("en")));
- let i=0;
- function next(){
-  if(token!==speechToken||i>=chunks.length)return;
-  const u=new SpeechSynthesisUtterance(chunks[i++]);
-  u.lang=lang;u.volume=1;u.pitch=1;u.rate=lang==="zh-TW"?.92:.84;
-  if(pref)u.voice=pref;
-  u.onend=next;
-  u.onerror=function(e){
-   console.warn("TTS error",e);
-   if(i<chunks.length)next();
-   else{const box=document.getElementById("voiceInfo");if(box)box.textContent="這一句沒有成功播放，請再按一次；其他句子仍可繼續使用。";}
-  };
-  syn.speak(u);
- }
- syn.cancel();
- syn.resume();
- next();
+ // Keep the working test-button path simple: one utterance, synchronously from the tap.
+ // On iPhone/iPad Safari, cancel/resume immediately before speak can swallow some utterances.
+ const u=new SpeechSynthesisUtterance(raw);
+ u.lang=lang;u.volume=1;u.pitch=1;u.rate=lang==="zh-TW"?.92:.84;
+ const vs=syn.getVoices()||voiceCache||[];
+ const pref=lang==="zh-TW"?(vs.find(v=>v.lang==="zh-TW")||vs.find(v=>v.lang&&v.lang.toLowerCase().startsWith("zh"))):(vs.find(v=>v.lang==="en-US")||vs.find(v=>v.lang==="en-GB")||vs.find(v=>v.lang&&v.lang.toLowerCase().startsWith("en")));
+ if(pref)u.voice=pref;
+ u.onerror=function(e){
+  console.warn("TTS error",e);
+  const box=document.getElementById("voiceInfo");
+  if(box)box.textContent="這一句播放失敗："+(e.error||"unknown")+"。";
+ };
+ syn.speak(u);
 }
 function lessonHTML(key){
  const L=lessons[key];
  return '<div class="hero"><h1>'+L.title+'</h1><div class="sub">先看、先聽、理解後再做題，不急著背。</div></div>'+
- L.sections.map(s=>'<section class="lessonblock"><h2>'+s[0]+'</h2>'+s[1].map(x=>'<div class="line"><div class="row"><span class="en">'+x[0]+'</span><button class="speak js-speak" data-lang="en-US" data-speech="'+encodeURIComponent(x[0])+'">🔊 英</button><button class="speak js-speak" data-lang="zh-TW" data-speech="'+encodeURIComponent(x[1])+'">🔊 中</button></div><div class="zh">'+x[1]+'</div></div>').join('')+'</section>').join('');
+ L.sections.map(s=>'<section class="lessonblock"><h2>'+s[0]+'</h2>'+s[1].map((x,i)=>'<div class="line"><div class="row"><span class="en">'+x[0]+'</span><button type="button" class="speak js-speak" data-lang="en-US" data-section="'+encodeURIComponent(s[0])+'" data-index="'+i+'">🔊 英</button><button type="button" class="speak js-speak" data-lang="zh-TW" data-section="'+encodeURIComponent(s[0])+'" data-index="'+i+'">🔊 中</button></div><div class="zh">'+x[1]+'</div></div>').join('')+'</section>').join('');
 }
 document.addEventListener("click",function(e){
  const b=e.target.closest(".js-speak");
  if(!b)return;
  e.preventDefault();
- speak(decodeURIComponent(b.dataset.speech||""),b.dataset.lang||"en-US");
+ const L=lessons[currentView];
+ if(!L)return;
+ const sectionName=decodeURIComponent(b.dataset.section||"");
+ const section=L.sections.find(s=>s[0]===sectionName);
+ const row=section&&section[1]&&section[1][Number(b.dataset.index)];
+ if(!row)return;
+ speak(b.dataset.lang==="zh-TW"?row[1]:row[0],b.dataset.lang||"en-US");
 });
 function home(){
  const pct=state.done?Math.round(state.correct/state.done*100):0;
