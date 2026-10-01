@@ -25,7 +25,7 @@ hr{border:0;border-top:1px solid var(--line);margin:18px 0}.hidden{display:none}
 <body>
 <div class="app">
   <div class="top">
-    <div><div class="brand">🦊 AI 家教教室</div><div class="sub">學生：蝦米 ｜ 教材：南一 國中英語 1上 ｜ 已整理至 Lesson 4 P.68</div></div>
+    <div><div class="brand">🦊 AI 家教教室</div><div class="sub">學生：蝦米 ｜ 教材：南一 國中英語 1上 ｜ Starter～Lesson 6 全冊 P.153</div></div>
     <div class="row"><span class="pill" id="streak">今日：0 題</span><button class="btn light" onclick="resetProgress()">重設學習紀錄</button></div>
   </div>
   <div class="layout">
@@ -38,12 +38,22 @@ hr{border:0;border-top:1px solid var(--line);margin:18px 0}.hidden{display:none}
         <button data-view="review">🧠 Review I</button>
         <button data-view="l3">🍜 Lesson 3</button>
         <button data-view="l4">🏡 Lesson 4</button>
+        <button data-view="review2">🧠 Review II</button>
+        <button data-view="reading1">🗺️ Reading I</button>
+        <button data-view="l5">🌙 Lesson 5</button>
+        <button data-view="l6">🌍 Lesson 6</button>
+        <button data-view="review3">🧠 Review III</button>
+        <button data-view="reading2">🎵 Reading II</button>
+        <button data-view="learning">📗 Learning Corner</button>
+        <button data-view="appendix">📚 附錄</button>
         <button data-view="practice">🎯 自適應練習</button>
         <button data-view="cloze">✍🏻 綜合克漏</button>
         <button data-view="report">📊 學習報告</button>
       </div>
       <hr>
       <div class="small">朗讀功能使用瀏覽器內建語音。英文優先 en-US／en-GB，中文優先 zh-TW。</div>
+      <div class="row" style="margin-top:10px"><button class="btn light" onclick="speak('Good morning, Shami!','en-US')">🔊 測英文</button><button class="btn light" onclick="speak('蝦米，早安，我們開始上課。','zh-TW')">🔊 測中文</button></div>
+      <div class="small" id="voiceInfo" style="margin-top:8px">語音載入中…</div>
     </aside>
     <main class="panel" id="main"></main>
   </div>
@@ -149,7 +159,7 @@ sections:[
 ]]
 ]},
 l4:{
-title:"Lesson 4｜There Are Some Animals in the Game｜P.61–68（目前收到）", color:"#3c9688",
+title:"Lesson 4｜There Are Some Animals in the Game｜P.61–76", color:"#3c9688",
 sections:[
 ["Get Ready｜動物的家",[
 ["Dr. Wildman is an animal doctor.","Wildman 醫生是一位獸醫。"],["There are some animals in his house.","他的房子裡有一些動物。"],["kitchen, bedroom, bathroom, living room, dining room","廚房、臥室、浴室、客廳、飯廳"]
@@ -165,6 +175,26 @@ sections:[
 ]]
 ]}
 };
+lessons.l4.title="Lesson 4｜There Are Some Animals in the Game｜P.61–76";
+lessons.l4.sections.push(
+["Reading｜The Iron Animal",[
+["There are two teams.","有兩隊。"],["Monkey is next to Lion.","猴子在獅子旁邊。"],["Spider is in front of Hippo.","蜘蛛在河馬前面。"],["There is a water bottle in Hippo's bag.","河馬的袋子裡有一瓶水。"],["Panda is near Tiger.","熊貓在老虎附近。"],["All the players are ready for the game.","所有選手都準備好比賽了。"]
+]],
+["Grammar｜Where / There is / There are",[
+["Where is the gift? It is in the box.","禮物在哪裡？它在箱子裡。"],["Where are the dogs? They are between the cars.","狗在哪裡？牠們在兩台車之間。"],["There is a monkey in the house.","屋裡有一隻猴子。"],["There are six animals in the house.","屋裡有六隻動物。"],["There aren't any hippos in the house.","屋裡沒有河馬。"],["Are there any monkeys in the house?","屋裡有猴子嗎？"]
+]],
+["Fun with Sounds / Listen Up",[
+["do / food / flu / soup / fruit","長母音音組。"],["book / put / could / should","短母音音組。"],["map / money / team / game / nose / nice / sing / song","m / n / ng 子音辨音。"]
+]]
+);
+lessons.l5={"title":"Lesson 5｜My Friend Is Showing Me Around｜P.81–98","color":"#4777b8","sections":[["Get Ready｜台南景點",[["Anping Old Street","安平老街"],["Blueprint Cultural and Creative Park","藍晒圖文創園區"],["National Cheng Kung University","國立成功大學"],["Chihkan Tower","赤崁樓"],["Confucius Temple","孔廟"]]],["Dialogue｜Night Market",[["What are you doing?","你正在做什麼？"],["I'm having breakfast with your Aunt May.","我正在和你的 May 阿姨吃早餐。"],["I'm at a big night market in Tainan now.","我現在在台南一個大夜市。"],["Ted is showing me around.","Ted 正帶我四處參觀。"],["There are so many fun games here!","這裡有好多有趣的遊戲！"],["Some people are playing pinball, and some kids are playing ring toss.","有些人在玩彈珠檯，有些小孩在玩套圈圈。"],["Take a bite.","咬一口試試。"]]],["Words｜核心字彙",[["night market, video call, breakfast, aunt","夜市、視訊電話、早餐、阿姨／姑姑／伯母"],["many, people, kid, snack, enjoy","許多的、人們、小孩、小吃、享受"],["show ... around","帶……參觀"]]],["Word Power｜戶外活動",[["grass, line up, picnic, feed","草地、排隊、野餐、餵食"],["take pictures, camera, paint, puppy","拍照、照相機、畫畫、幼犬"]]],["Reading｜A Museum for All",[["The Chimei Museum is a great place.","奇美博物館是一個很棒的地方。"],["Inside the museum, there are shops, restaurants, and showrooms.","館內有商店、餐廳與展示廳。"],["Some people are looking at the artworks.","有些人正在欣賞藝術品。"],["Outside the museum, there is a bridge and a beautiful meadow.","博物館外有橋和美麗的草坪。"],["Ted and Matt are taking selfies.","Ted 和 Matt 正在自拍。"],["It is a museum for all.","這是一座適合所有人的博物館。"]]],["Grammar A/B｜現在進行式",[["I am reading.","我正在閱讀。"],["Are you reading? Yes, I am.","你正在閱讀嗎？是的。"],["What are you doing now?","你現在正在做什麼？"],["She is taking a selfie.","她正在自拍。"],["They are picnicking.","他們正在野餐。"],["do → doing / write → writing / sit → sitting","V-ing：直接加 ing／去 e 加 ing／重複字尾加 ing。"]]],["Grammar C｜時間",[["What time is it?","現在幾點？"],["It's six fifteen.","現在六點十五分。"],["a quarter past four","四點十五分"],["half past four","四點半"],["a quarter to five","四點四十五分"],["five o'clock","五點整"]]],["Fun with Sounds",[["ago / nose / coat / low","母音音組練習。"],["all / daughter / saw / bought","母音音組練習。"],["late / light, fail / cool","l 音練習。"],["race / read, dear / poor","r 音練習。"],["car / look, great / bag","k / g 對比。"]]],["Review II / Reading Corner I",[["There is / There are","複習存在句。"],["Where is / are ...?","複習位置問句。"],["Class 103 Field Trip: Taipei Zoo","閱讀動物園地圖、時程與規則。"]]]]};
+lessons.l6={"title":"Lesson 6｜We Can Save the Earth｜P.99–114","color":"#386faa","sections":[["Get Ready｜Superheroes",[["Who is his superhero?","誰是他的超級英雄？"],["What can the superhero do?","這位超級英雄會做什麼？"],["He can run very fast.","他可以跑得非常快。"]]],["Dialogue｜Super 4",[["The Earth is in danger. Please help us.","地球有危險，請幫幫我們。"],["I am strong. I can move anything!","我很強壯，我可以移動任何東西！"],["I can run very fast!","我可以跑得非常快！"],["No one can catch me.","沒有人追得上我。"],["I can freeze anything!","我可以把任何東西凍結。"],["Let's save the world now!","我們現在就去拯救世界吧！"],["No sweat!","小事一樁！"]]],["Words｜核心字彙",[["attack, Earth, member, move, anything","攻擊、地球、成員、移動、任何事情"],["mountain, fast, queen, even, save","山、快速地、皇后、甚至、拯救"],["danger, flash, freeze, ocean","危險、閃光、結冰、海洋"]]],["Word Power｜地球",[["sun, river, lake, rainbow","太陽、河流、湖泊、彩虹"],["island, sea, moon, star","島嶼、海洋、月亮、星星"]]],["Reading｜The Solomon Islands",[["The Solomon Islands are in trouble.","索羅門群島正面臨麻煩。"],["The Earth is too hot, and the ice is melting.","地球太熱，冰正在融化。"],["The sea level is rising.","海平面正在上升。"],["Please move the houses to a safe place.","請把房子移到安全的地方。"],["Please tell the world about our problem.","請把我們的問題告訴全世界。"]]],["Post-reading｜Save the Earth",[["turn off the lights","關燈"],["take the metro","搭捷運"],["recycle","做回收"],["save water","省水"],["cut down food waste","減少廚餘"],["use cloth shopping bags","使用布製購物袋"]]],["Grammar A/B｜can / can't",[["Can you cook? Yes, I can.","你會煮飯嗎？是的，我會。"],["Fish can't walk.","魚不會走路。"],["What can the parrot do?","鸚鵡會做什麼？"],["It can sing.","牠會唱歌。"],["What can your sister do?","你姊妹會做什麼？"],["She can run very fast.","她可以跑得很快。"]]],["Fun with Sounds",[["hi / bike / lie / high / fly","雙母音 /aɪ/。"],["house / power / loud / how","雙母音 /aʊ/。"],["boil / boy / join / toy","雙母音 /ɔɪ/。"],["happy / watch / yes","h / w / y 子音。"]]]]};
+lessons.review2={"title":"Review II｜Lesson 3–4｜P.77–80","color":"#3b9277","sections":[["Build Your Vocabulary",[["fork / chopsticks / spoon / knife","餐具分類複習。"],["kitchen / living room","房間位置複習。"],["jacket / swimming pool","依圖片找不合理物品。"]]],["Grow Your Grammar",[["Please try it again.","肯定祈使句。"],["Please don't be late.","否定祈使句。"],["There is a man in front of my house.","There is 單數。"],["There are two monkeys in the tree.","There are 複數。"]]],["Power Up Your Reading｜Cooking Classes",[["Wear a mask. Wash your hands. Keep the kitchen clean.","烹飪課該做的事。"],["Do NOT run. Do NOT bring snacks or drinks.","烹飪課不該做的事。"]]]]};
+lessons.reading1={"title":"Reading Corner I｜Taipei Zoo｜P.79–80","color":"#419477","sections":[["Taipei Zoo Map",[["Animals of Taiwan / Panda House / Zebra Park / Bird Garden / Elephant Forest","閱讀地圖與方位。"]]],["Class 103 Field Trip",[["October 12, 08:30–16:00","校外教學日期與時間。"],["Bring a lunch, NT$100, and a jacket.","帶午餐、100 元與外套。"],["Don't run at the zoo.","不要在動物園跑。"],["Don't play with animals at the zoo.","不要在動物園和動物玩。"]]]]};
+lessons.review3={"title":"Review III｜Lesson 5–6｜P.115–116","color":"#4477b5","sections":[["Build Your Vocabulary",[["star / river / lake / rainbow / moon / island / sun / mountain","地球與自然字彙複習。"]]],["Grow Your Grammar",[["I am studying at school.","現在進行式。"],["What time is it? It's ten fifteen.","時間問答。"],["I can / can't dance.","can / can't 能力。"],["Can I use your bike?","can 請求許可。"]]],["Power Up Your Reading",[["There is just one Earth.","地球只有一個。"],["You can save water and plant a tree.","可以省水、種樹。"],["Recycle things. Don't throw them away.","回收物品，不要隨意丟棄。"]]]]};
+lessons.reading2={"title":"Reading Corner II｜P.117–118","color":"#4f7cae","sections":[["Dream Museum",[["Read opening hours, closed days, and ticket prices.","讀懂開館時間、休館日與票價。"]]],["The Best Grass Concert",[["Music × Food × Show × Picnic × Fun","從活動海報找日期、時間與地點。"],["Use Brian's schedule to decide when he can enjoy the concert.","配合行程表判斷可參加時間。"]]]]};
+lessons.learning={"title":"Learning Corner｜P.121–127","color":"#578d5d","sections":[["1. I Am Yeti",[["The mountain is my home.","山是我的家。"],["I am tall and strong, but I am not a bear.","我又高又壯，但我不是熊。"],["My hair is white and long.","我的毛是白色而且很長。"]]],["2. A Postcard from India",[["Amit writes about the Taj Mahal.","Amit 介紹泰姬瑪哈陵。"],["It can look pink, white, or golden at different times.","不同時間看起來會呈現不同顏色。"]]],["3. Invitation Card",[["Date / Place / Time","練習讀邀請卡的日期、地點與時間。"],["Please bring a dish. Please be on time.","讀懂活動規則。"]]],["4. Dr. Wildman's Diary",[["Gift hunts are fun!","尋寶很好玩。"],["The thank-you card is on my table now.","感謝卡現在在桌上。"]]],["5. We're at Shilin Night Market",[["There is delicious food all around us.","四周都有美味食物。"],["You can also try oyster noodles, stinky tofu, and bubble milk tea.","也可以試蚵仔麵線、臭豆腐和珍珠奶茶。"]]],["6. More about Super 4",[["Super 4 members are saving people from a flood.","Super 4 正在洪水中救人。"],["Speedman can take people to a safe place in the blink of an eye.","Speedman 能非常快速地把人帶到安全處。"]]]]};
+lessons.appendix={"title":"附錄｜P.128–153","color":"#71835c","sections":[["各課生詞表",[["Lesson 1 words｜P.128–129","動物、描述、閱讀字彙。"],["Lesson 2 words｜P.130–131","人物、國家、職業、景點。"],["Lesson 3 words｜P.132–133","餐具、派對、祈使句相關字彙。"],["Lesson 4 words｜P.134–136","房間、位置、比賽相關字彙。"],["Lesson 5 words｜P.137–138","夜市、活動、博物館相關字彙。"],["Lesson 6 words｜P.139–140","能力、自然、環境相關字彙。"]]],["A–Z 生詞索引｜P.141–144",[["Use the A–Z index to find a word and its lesson.","可按字母查生詞與課次。"]]],["國小應用字彙｜P.145–150",[["numbers, colors, family, school, food, animals, daily verbs","國小基礎字彙會一起放進自適應題庫。"]]],["Classroom Language｜P.151",[["Look at me. / Listen carefully. / Try it again.","看著我／仔細聽／再試一次。"],["Open your book. / Spell the word. / Raise your hand.","打開書／拼字／舉手。"],["Are you ready? / Are you sure?","準備好了嗎／你確定嗎？"],["Good job. / Well done. / Excellent. / Perfect.","做得好／很棒／太棒了／完美。"]]],["Chimei Museum Info｜P.152",[["No. 66, Sec. 2, Wenhua Rd., Rende Dist., Tainan City 71755","奇美博物館地址。"],["Opening hours: 9:30–17:30","開放時間。"],["Closed on Wednesdays","星期三休館。"],["General admission: NT$200","一般票 200 元。"],["Discount ticket: NT$150","優待票 150 元。"]]],["KK Phonetic Symbols｜P.153",[["[p] pencil / [b] book / [t] tiger / [d] doctor","子音練習。"],["[k] cat / [g] girl / [f] fish / [v] vase","子音練習。"],["[θ] three / [ð] this / [ʃ] fish / [tʃ] chair","th / sh / ch。"],["[i] tea / [ɪ] miss / [e] cake / [ɛ] pen / [æ] apple","母音練習。"],["[u] room / [ʊ] book / [aɪ] bike / [aʊ] cow / [ɔɪ] boy","母音與雙母音。"]]]]};
 
 const questions = [
 {l:"starter",k:"vocab",q:"How are you? 最適合的回應是？",c:["I'm fine. Thank you.","Good night.","My name is Tina.","It's a duck."],a:0,e:"How are you? 是問候近況。"},
@@ -199,24 +229,84 @@ const questions = [
 {l:"l4",k:"prep",q:"between 的意思是？",c:["在兩者之間","在前面","在後面","在裡面"],a:0,e:"between = 在兩者之間。"},
 {l:"l4",k:"reading",q:"Gift hunt 中，Wildman 的禮物在哪裡？",c:["on the table","under a chair","in the garden","next to the sofa"],a:1,e:"對話中說 my gift is under a chair."},
 {l:"l4",k:"idiom",q:"Let's get the ball rolling! 意思最接近？",c:["開始行動吧","去踢球吧","把球藏起來","停止遊戲"],a:0,e:"get the ball rolling = 讓事情開始進行。"}
+,{"l":"l4","k":"grammar","q":"There ___ a desk in the room.","c":["is","are","am","be"],"a":0,"e":"單數 a desk 用 There is。"},
+{"l":"l4","k":"grammar","q":"There ___ two books on the desk.","c":["is","are","am","be"],"a":1,"e":"複數 two books 用 There are。"},
+{"l":"l4","k":"position","q":"Monkey is ___ to Lion.","c":["next","front","between","under"],"a":0,"e":"next to = 在……旁邊。"},
+{"l":"l4","k":"reading","q":"The Iron Animal 中，Hippo 的袋子裡有什麼？","c":["a water bottle","bananas","bamboo","a camera"],"a":0,"e":"閱讀中有 a water bottle in Hippo's bag。"},
+{"l":"l4","k":"reading","q":"Panda 在哪一區？","c":["Area A","Area B","Area C","No area"],"a":2,"e":"Panda 和 Tiger 在 Area C。"},
+{"l":"l5","k":"grammar","q":"She ___ taking a selfie.","c":["is","are","am","be"],"a":0,"e":"She 搭配 is，現在進行式是 is taking。"},
+{"l":"l5","k":"grammar","q":"What ___ the kids doing?","c":["are","is","am","does"],"a":0,"e":"the kids 是複數，搭配 are。"},
+{"l":"l5","k":"grammar","q":"write 的 V-ing 形式是？","c":["writeing","writing","writting","writes"],"a":1,"e":"字尾 e 去掉再加 -ing：write → writing。"},
+{"l":"l5","k":"time","q":"04:30 可以說：","c":["half past four","a quarter past four","a quarter to four","five past four"],"a":0,"e":"04:30 = half past four。"},
+{"l":"l5","k":"time","q":"04:45 可以說：","c":["a quarter past four","half past four","a quarter to five","five o'clock"],"a":2,"e":"04:45 = a quarter to five。"},
+{"l":"l5","k":"reading","q":"A Museum for All 中，哪一個不在博物館裡面？","c":["bridge","shops","restaurants","showrooms"],"a":0,"e":"bridge 在 museum 外面。"},
+{"l":"l5","k":"reading","q":"Ted and Matt 在博物館外正在做什麼？","c":["taking selfies","sleeping","cooking","feeding animals"],"a":0,"e":"閱讀中寫 Ted and Matt are taking selfies。"},
+{"l":"l5","k":"vocab","q":"show ... around 的意思是？","c":["帶……參觀","把……藏起來","和……通話","排隊"],"a":0,"e":"show someone around = 帶某人四處參觀。"},
+{"l":"l5","k":"vocab","q":"line up 的意思是？","c":["排隊","拍照","野餐","畫畫"],"a":0,"e":"line up = 排隊。"},
+{"l":"l6","k":"grammar","q":"Can the parrot sing? Yes, it ___.","c":["can","can't","is","does"],"a":0,"e":"Can 問句的肯定簡答用 can。"},
+{"l":"l6","k":"grammar","q":"Fish ___ walk.","c":["can","can't","are","do"],"a":1,"e":"魚不會走路，所以用 can't。"},
+{"l":"l6","k":"grammar","q":"What ___ Ice Queen do?","c":["can","is","are","does"],"a":0,"e":"詢問能力用 What can ... do?"},
+{"l":"l6","k":"reading","q":"為什麼海平面正在上升？","c":["Because the ice is melting.","Because the islands are heavy.","Because there are many fish.","Because the moon is big."],"a":0,"e":"課文把 sea level rising 與 ice melting 連在一起。"},
+{"l":"l6","k":"reading","q":"Clunk 能幫忙做什麼？","c":["move houses","freeze the ocean","take selfies","paint"],"a":0,"e":"Clunk 很強壯，可以把房子移到安全的地方。"},
+{"l":"l6","k":"reading","q":"Captain Brave 可以做什麼？","c":["tell the world about the problem","freeze anything","run very fast","move a mountain"],"a":0,"e":"Captain Brave 是 speaker，負責告訴大家問題。"},
+{"l":"l6","k":"vocab","q":"sea level 的意思是？","c":["海平面","海島","海水瓶","山頂"],"a":0,"e":"sea level = 海平面。"},
+{"l":"l6","k":"idiom","q":"No sweat! 最接近哪個意思？","c":["小事一樁！","流汗了！","快逃！","別說話！"],"a":0,"e":"No sweat! 是『沒問題／小事一樁』。"},
+{"l":"review2","k":"review","q":"There are two signs in the classroom. 主詞是複數，應用？","c":["There is","There are","It is","They is"],"a":1,"e":"複數名詞用 There are。"},
+{"l":"review3","k":"review","q":"I ___ studying at school.","c":["am","is","are","can"],"a":0,"e":"I 的現在進行式是 I am studying。"},
+{"l":"review3","k":"review","q":"I ___ dance. 表示『我會跳舞』。","c":["can","am","is","are"],"a":0,"e":"能力用 can + 原形動詞。"}
 ];
+
+
+const vocabBanks={"starter":[["zero","零"],["one","一"],["two","二"],["three","三"],["four","四"],["five","五"],["six","六"],["seven","七"],["eight","八"],["nine","九"],["ten","十"],["apple","蘋果"],["ball","球"],["book","書"],["boy","男孩"],["girl","女孩"],["friend","朋友"],["teacher","老師"],["student","學生"],["name","名字"],["phone","電話"],["number","號碼"],["red","紅色"],["blue","藍色"],["green","綠色"],["yellow","黃色"],["black","黑色"],["white","白色"],["mother","媽媽"],["father","爸爸"],["sister","姊妹"],["brother","兄弟"]],"l1":[["show","節目"],["picture","圖畫"],["goose","鵝"],["point","分數"],["lion","獅子"],["monkey","猴子"],["more","更多的"],["winner","贏家"],["bee","蜜蜂"],["frog","青蛙"],["zebra","斑馬"],["birthday","生日"],["elephant","大象"],["mouse","老鼠"],["ant","螞蟻"],["sheep","綿羊"],["goat","山羊"],["angry","生氣的"],["young","年輕的"],["clean","乾淨的"],["dirty","髒的"],["hippo","河馬"],["strong","強壯的"],["brown","棕色的"],["bear","熊"],["fruit","水果"],["favorite","最喜愛的"],["hairy","毛茸茸的"],["forest","森林"],["footprint","腳印"]],"l2":[["postcard","明信片"],["the USA","美國"],["year(s) old","歲"],["famous","有名的"],["beautiful","漂亮的"],["all over the world","世界各地"],["hard","困難的"],["easy","簡單的"],["late","遲的"],["tomorrow","明天"],["family","家庭"],["farmer","農夫"],["housewife","家庭主婦"],["clerk","職員"],["actress","女演員"],["son","兒子"],["daughter","女兒"],["husband","丈夫"],["wife","妻子"],["junior high school","國中"],["star","明星"],["still","還；仍然"],["cute","可愛的"],["wonderful","絕妙的；極好的"],["place","地方"],["theme park","主題樂園"],["founder","創辦者"],["cartoon","卡通"],["have a great time","玩得開心"]],"l3":[["please","請"],["put","放"],["dish","菜餚"],["let's","讓我們"],["try","嘗試"],["beef noodles","牛肉麵"],["use","使用"],["chopsticks","筷子"],["delicious","美味的"],["guys","大家"],["just","就；只是"],["hand","手"],["bring","帶"],["talk","說話"],["party","派對"],["invite","邀請"],["join","參加"],["glass","玻璃杯"],["bowl","碗"],["spoon","湯匙"],["menu","菜單"],["fork","叉子"],["plate","盤子"],["knife","刀子"],["e-mail","電子郵件"],["everyone","每個人"],["house","房子"],["wear","穿"],["something","某樣東西"],["country","國家"],["any","任何的"],["fun","樂趣"],["Halloween","萬聖節前夕"],["around the corner","即將到來"],["plan","計畫"]],"l4":[["animal","動物"],["surprise","驚喜"],["love","愛"],["gift","禮物"],["hunt","尋找"],["inside","在裡面"],["lunch","午餐"],["again","再一次"],["pin","別針"],["so","非常地"],["kind","體貼的"],["jacket","夾克"],["bamboo","竹子"],["Thanksgiving","感恩節"],["bathroom","浴室"],["bedroom","臥室"],["living room","客廳"],["window","窗戶"],["sofa","長沙發"],["dining room","飯廳"],["kitchen","廚房"],["swimming pool","游泳池"],["garden","花園"],["behind","在後面"],["in front of","在前面"],["between","在之間"],["garage","車庫"],["next to","在旁邊"],["team","隊"],["hard-working","認真的"],["smart","聰明的"],["area","區域"],["pocket","口袋"],["spider","蜘蛛"],["busy","忙碌的"],["water","水"],["bottle","瓶子"],["near","在附近"],["shoulder","肩膀"],["player","運動員"],["cheer","歡呼；鼓舞"],["panda","熊貓"]],"l5":[["night market","夜市"],["video call","視訊電話"],["breakfast","早餐"],["aunt","阿姨；舅媽；姑姑；伯母"],["many","許多的"],["people","人們"],["kid","小孩"],["snack","小吃"],["enjoy","享受"],["show ... around","帶……參觀"],["grass","草地"],["line up","排隊"],["picnic","野餐"],["feed","餵食"],["take pictures","拍照"],["camera","照相機"],["paint","畫畫"],["puppy","幼犬"],["museum","博物館"],["sunny","晴天的"],["shop","商店"],["restaurant","餐廳"],["ticket","票"],["outside","在外面"],["bridge","橋"],["also","也"],["art","藝術"],["joy","喜悅"],["showroom","展示廳"],["artwork","藝術品"],["selfie","自拍照"],["meadow","草坪"]],"l6":[["attack","攻擊"],["Earth","地球"],["member","成員"],["move","移動"],["anything","任何事情"],["mountain","山"],["fast","快速地"],["queen","皇后"],["even","甚至"],["No problem!","沒問題！"],["save","拯救"],["danger","危險"],["flash","閃光"],["freeze","結冰"],["ocean","海洋"],["sun","太陽"],["river","河流"],["lake","湖泊"],["rainbow","彩虹"],["island","島嶼"],["sea","海洋"],["moon","月亮"],["star","星星"],["dear","親愛的"],["trouble","麻煩"],["ice","冰"],["level","平面"],["rise","上升"],["lose","失去"],["safe","安全的"],["tell","告訴"],["super","超級的"],["melt","融化"],["speaker","演說家"]]};
+function rotateChoices(arr,n){const a=arr.slice();for(let i=0;i<n;i++)a.unshift(a.pop());return a}
+Object.entries(vocabBanks).forEach(function(pair){
+ const lesson=pair[0], bank=pair[1];
+ bank.forEach(function(item,i){
+   const word=item[0], zh=item[1];
+   const distract=bank.filter(function(_,j){return j!==i}).slice((i*3)%Math.max(1,bank.length-1)).concat(bank).filter(function(x){return x[0]!==word}).slice(0,3).map(function(x){return x[1]});
+   let choices=rotateChoices([zh].concat(distract),i%4);
+   questions.push({l:lesson,k:"vocab",q:word+" 的中文意思是？",c:choices,a:choices.indexOf(zh),e:word+" = "+zh+"。"});
+   questions.push({l:lesson,k:"spelling",t:"input",q:"請自己拼出「"+zh+"」的英文。",ans:word,e:"正確拼法："+word+"。"});
+ });
+});
 
 const clozes = [
 {title:"Lesson 2 明信片",text:"Hello Tina, My name is Annie. I am a junior high school student from the __1__. Walt Disney World is my favorite theme __2__. Mickey Mouse is my favorite cartoon __3__. Come and have a great __4__!",ans:["usa","park","star","time"],help:"提示：USA / park / star / time"},
 {title:"Lesson 3 Potluck",text:"Hey everyone, Please come to my __1__ for a potluck. Please bring your favorite __2__ and wear something from your __3__. Don't bring any __4__. Let's have __5__!",ans:["house","dish","country","drinks","fun"],help:"提示：house / dish / country / drinks / fun"},
 {title:"Lesson 4 房子位置",text:"There is a TV in the living room. There is a brown rabbit __1__ the hat. The garage is __2__ the house. A gift is __3__ a chair.",ans:["under","next to","under"],help:"提示：under / next to"}
+,{title:"Lesson 5｜Tainan Trip 10 格",text:"Matt is at a __1__ market in Tainan. He is on a video __2__ with his mom. Ted is showing him __3__. Some kids are eating __4__. Later, they visit a __5__. People are lining up for __6__. Outside, some families are __7__. Ted and Matt are taking __8__. It is a __9__ afternoon, and everyone is having __10__.",ans:["night","call","around","snacks","museum","tickets","picnicking","selfies","sunny","fun"],help:"選項：night / call / around / snacks / museum / tickets / picnicking / selfies / sunny / fun"},
+{title:"Lesson 6｜Save the Earth 10 格",text:"The Earth is in __1__. The ice is __2__ and the sea level is __3__. People on an __4__ may lose their homes. Ice Queen can __5__ the ocean. Clunk can __6__ houses to a safe place. Captain Brave can __7__ the world about the problem. Everyone can help __8__ the Earth. We can __9__ water. No __10__!",ans:["danger","melting","rising","island","freeze","move","tell","save","save","problem"],help:"選項：danger / melting / rising / island / freeze / move / tell / save / save / problem"}
 ];
 
 let state = JSON.parse(localStorage.getItem("xiaMiEnglishProgress")||'{"done":0,"correct":0,"wrong":{},"seen":{},"today":0}');
 let currentView="home", selectedLesson="all";
 
 function save(){localStorage.setItem("xiaMiEnglishProgress",JSON.stringify(state));document.getElementById("streak").textContent="今日："+(state.today||0)+" 題";}
+let voiceCache=[];
+function refreshVoices(){
+ if(!("speechSynthesis" in window))return;
+ voiceCache=speechSynthesis.getVoices()||[];
+ const box=document.getElementById("voiceInfo");
+ if(box){
+  const en=voiceCache.find(v=>v.lang==="en-US")||voiceCache.find(v=>v.lang==="en-GB")||voiceCache.find(v=>v.lang&&v.lang.startsWith("en"));
+  const zh=voiceCache.find(v=>v.lang==="zh-TW")||voiceCache.find(v=>v.lang&&v.lang.startsWith("zh"));
+  box.textContent="語音 "+voiceCache.length+" 個｜英："+(en?en.name:"使用系統預設")+"｜中："+(zh?zh.name:"使用系統預設");
+ }
+}
+if("speechSynthesis" in window){
+ refreshVoices();
+ speechSynthesis.onvoiceschanged=refreshVoices;
+}
 function speak(text,lang){
-  speechSynthesis.cancel();
-  const u=new SpeechSynthesisUtterance(text);u.lang=lang;
-  const vs=speechSynthesis.getVoices();
-  const pref=lang==="zh-TW"?vs.find(v=>v.lang==="zh-TW")||vs.find(v=>v.lang.startsWith("zh")):vs.find(v=>v.lang==="en-US")||vs.find(v=>v.lang==="en-GB")||vs.find(v=>v.lang.startsWith("en"));
-  if(pref)u.voice=pref;u.rate=.88;speechSynthesis.speak(u);
+ if(!("speechSynthesis" in window)){alert("這個瀏覽器沒有提供語音功能。");return}
+ const syn=window.speechSynthesis;
+ syn.cancel();
+ const u=new SpeechSynthesisUtterance(String(text));u.lang=lang;u.volume=1;u.pitch=1;u.rate=lang==="zh-TW"?.92:.84;
+ const vs=voiceCache.length?voiceCache:syn.getVoices();
+ const pref=lang==="zh-TW"?(vs.find(v=>v.lang==="zh-TW")||vs.find(v=>v.lang&&v.lang.startsWith("zh"))):(vs.find(v=>v.lang==="en-US")||vs.find(v=>v.lang==="en-GB")||vs.find(v=>v.lang&&v.lang.startsWith("en")));
+ if(pref)u.voice=pref;
+ u.onerror=function(){const box=document.getElementById("voiceInfo");if(box)box.textContent="語音播放失敗，請再按一次測試鍵，並確認手機／電腦不是靜音。"};
+ setTimeout(function(){syn.resume();syn.speak(u)},20);
 }
 function lessonHTML(key){
  const L=lessons[key];
@@ -225,26 +315,46 @@ function lessonHTML(key){
 }
 function home(){
  const pct=state.done?Math.round(state.correct/state.done*100):0;
- return '<div class="hero"><h1>蝦米今天想從哪裡開始？ 🐥📚</h1><div>目前整理到 <b>Lesson 4 P.68</b>。可以先學教材，再進自適應題庫。</div></div>'+
+ return '<div class="hero"><h1>蝦米今天想從哪裡開始？ 🐥📚</h1><div>現在已整理到 <b>全冊 P.153</b>。可以先看教材、聽發音，再進自適應題庫。</div></div>'+
  '<div class="grid"><div class="card"><div class="small">累積作答</div><div class="stat">'+state.done+'</div></div><div class="card"><div class="small">正確率</div><div class="stat">'+pct+'%</div></div><div class="card"><div class="small">待複習錯題</div><div class="stat">'+Object.keys(state.wrong||{}).filter(k=>state.wrong[k]>0).length+'</div></div></div>'+
  '<div class="lessonblock"><h2>學習順序</h2><div class="grid">'+Object.keys(lessons).map(k=>'<div class="card"><h3>'+lessons[k].title.split("｜")[0]+'</h3><div class="small">'+lessons[k].title+'</div><br><button class="btn secondary" onclick="go(\''+k+'\')">開始這單元</button></div>').join('')+'</div></div>'+
- '<div class="note">💡 這版先把目前收到的 P.3–68 整理成可用教學系統。Lesson 4 後半還沒收到，所以不亂補不存在的課本內容。</div>';
+ '<div class="note">💡 這版已把 Starter、Lesson 1–6、Review I–III、Reading Corner、Learning Corner、各課生詞表、國小應用字彙、Classroom Language 與 KK 音標整理進系統。題庫會從整冊單字自動長出辨義題與拼字題。</div>';
 }
 let currentQ=null;
+let recentQuestionIds=[];
 function pickQuestion(){
- const pool=questions.filter(q=>selectedLesson==="all"||q.l===selectedLesson);
- const weighted=[];
- pool.forEach((q,i)=>{const id=questions.indexOf(q);let w=1+(state.wrong[id]||0)*4+(state.seen[id]?0:3);for(let n=0;n<w;n++)weighted.push(q)});
- return weighted[Math.floor(Math.random()*weighted.length)];
+ let pool=questions.filter(q=>selectedLesson==="all"||q.l===selectedLesson);
+ if(!pool.length)pool=questions;
+ let weighted=[];
+ pool.forEach(q=>{const id=questions.indexOf(q);let w=1+(state.wrong[id]||0)*5+(state.seen[id]?0:4);if(q.t==="input")w+=2;if(recentQuestionIds.includes(id))w=0;for(let n=0;n<w;n++)weighted.push(q)});
+ if(!weighted.length)weighted=pool;
+ const q=weighted[Math.floor(Math.random()*weighted.length)];
+ const id=questions.indexOf(q);recentQuestionIds.push(id);if(recentQuestionIds.length>6)recentQuestionIds.shift();
+ return q;
 }
 function practice(){
- return '<div class="hero"><h1>🎯 自適應練習</h1><div>錯題與沒做過的題目會比較容易再次出現。</div></div>'+
- '<div class="row"><label>範圍：</label><select id="lessonSel" onchange="selectedLesson=this.value;nextQ()"><option value="all">全部</option>'+Object.keys(lessons).map(k=>'<option value="'+k+'" '+(selectedLesson===k?'selected':'')+'>'+lessons[k].title.split("｜")[0]+'</option>').join('')+'</select><button class="btn light" onclick="nextQ()">換一題</button></div><hr><div id="quizArea"></div>';
+ const keys=Object.keys(lessons).filter(k=>questions.some(q=>q.l===k));
+ return '<div class="hero"><h1>🎯 自適應練習</h1><div>錯題、沒做過的題目、拼字題會比較容易再次出現。現在題庫會依全冊單字自動生成。</div></div>'+
+ '<div class="row"><label>範圍：</label><select id="lessonSel" onchange="selectedLesson=this.value;nextQ()"><option value="all">全部</option>'+keys.map(k=>'<option value="'+k+'" '+(selectedLesson===k?'selected':'')+'>'+lessons[k].title.split("｜")[0]+'</option>').join('')+'</select><button class="btn light" onclick="nextQ()">換一題</button></div><hr><div id="quizArea"></div>';
 }
 function nextQ(){
  currentQ=pickQuestion();const id=questions.indexOf(currentQ);state.seen[id]=1;save();
  const a=document.getElementById("quizArea");if(!a)return;
- a.innerHTML='<div class="quizbox"><div class="small">'+lessons[currentQ.l].title+'</div><div class="qtitle">'+currentQ.q+'</div><div class="choices">'+currentQ.c.map((x,i)=>'<button class="choice" onclick="answerQ('+i+',this)">'+String.fromCharCode(65+i)+'. '+x+'</button>').join('')+'</div><div class="feedback" id="feedback">選一個答案 👀</div><button class="btn secondary" onclick="nextQ()">下一題</button></div>';
+ if(currentQ.t==="input"){
+  a.innerHTML='<div class="quizbox"><div class="small">'+lessons[currentQ.l].title+'｜自己拼字</div><div class="qtitle">'+currentQ.q+'</div><input id="freeAnswer" autocomplete="off" onpaste="return false" ondrop="return false" style="width:100%;padding:13px;border:2px solid var(--line);border-radius:12px;font-size:18px"><div class="small" style="margin-top:6px">不能貼上，要自己打 ✍🏻</div><div class="feedback" id="feedback">輸入後按「檢查答案」。</div><button class="btn" onclick="answerInputQ()">檢查答案</button> <button class="btn secondary" onclick="nextQ()">換一題</button></div>';
+  const inp=document.getElementById("freeAnswer");if(inp){inp.focus();inp.onkeydown=function(e){if(e.key==="Enter")answerInputQ()}}
+ }else{
+  a.innerHTML='<div class="quizbox"><div class="small">'+lessons[currentQ.l].title+'</div><div class="qtitle">'+currentQ.q+'</div><div class="choices">'+currentQ.c.map((x,i)=>'<button class="choice" onclick="answerQ('+i+',this)">'+String.fromCharCode(65+i)+'. '+x+'</button>').join('')+'</div><div class="feedback" id="feedback">選一個答案 👀</div><button class="btn secondary" onclick="nextQ()">下一題</button></div>';
+ }
+}
+function cleanAnswer(x){return String(x||"").trim().toLowerCase().replaceAll("’","'").replace(/[.?!。？！]+$/,"").replace(/\s+/g," ")}
+function answerInputQ(){
+ const el=document.getElementById("freeAnswer");if(!el)return;
+ const id=questions.indexOf(currentQ);const ok=cleanAnswer(el.value)===cleanAnswer(currentQ.ans);
+ state.done++;state.today=(state.today||0)+1;el.disabled=true;
+ if(ok){state.correct++;state.wrong[id]=Math.max(0,(state.wrong[id]||0)-1);el.style.borderColor="#58a87c";document.getElementById("feedback").innerHTML="✅ 自己拼對了！ "+currentQ.e}
+ else{state.wrong[id]=(state.wrong[id]||0)+1;el.style.borderColor="#d26d6d";document.getElementById("feedback").innerHTML="🥺 這題先記起來。正確答案：<b>"+currentQ.ans+"</b>。 "+currentQ.e}
+ save();
 }
 function answerQ(i,btn){
  const id=questions.indexOf(currentQ);const all=[...document.querySelectorAll(".choice")];all.forEach(b=>b.disabled=true);
@@ -255,7 +365,7 @@ function answerQ(i,btn){
 }
 function clozeView(){
  return '<div class="hero"><h1>✍🏻 綜合克漏</h1><div>不是只按選項，要自己拼出關鍵字。</div></div>'+
- clozes.map((z,zi)=>{let t=z.text.replace(/__(\d+)__/g,(m,n)=>'<input id="c'+zi+'_'+n+'" autocomplete="off">');return '<div class="card" style="margin-bottom:14px"><h3>'+z.title+'</h3><div class="cloze">'+t+'</div><div class="small">'+z.help+'</div><br><button class="btn" onclick="checkCloze('+zi+')">檢查</button> <span id="cr'+zi+'"></span></div>'}).join('');
+ clozes.map((z,zi)=>{let t=z.text.replace(/__(\d+)__/g,(m,n)=>'<input id="c'+zi+'_'+n+'" autocomplete="off" onpaste="return false" ondrop="return false">');return '<div class="card" style="margin-bottom:14px"><h3>'+z.title+'</h3><div class="cloze">'+t+'</div><div class="small">'+z.help+'</div><br><button class="btn" onclick="checkCloze('+zi+')">檢查</button> <span id="cr'+zi+'"></span></div>'}).join('');
 }
 function checkCloze(zi){const z=clozes[zi];let ok=0;z.ans.forEach((a,i)=>{const el=document.getElementById("c"+zi+"_"+(i+1));if(el&&el.value.trim().toLowerCase()===a.toLowerCase()){ok++;el.style.borderColor="#58a87c"}else if(el)el.style.borderColor="#d26d6d"});document.getElementById("cr"+zi).textContent="答對 "+ok+" / "+z.ans.length;}
 function report(){
@@ -276,7 +386,7 @@ function render(){
 function go(v){currentView=v;render();window.scrollTo({top:0,behavior:"smooth"})}
 document.querySelectorAll(".side button[data-view]").forEach(b=>b.onclick=()=>go(b.dataset.view));
 function resetProgress(){if(confirm("確定要清除蝦米目前的本機學習紀錄嗎？")){state={done:0,correct:0,wrong:{},seen:{},today:0};save();render()}}
-save();render();
+save();render();setTimeout(refreshVoices,120);
 </script>
 </body>
 </html>
