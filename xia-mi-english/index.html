@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>🦊 AI 家教教室｜蝦米｜南一國中英語1上</title>
+<style>
+:root{--bg:#fffaf7;--card:#fff;--ink:#263238;--muted:#6d7278;--accent:#ef7d73;--accent2:#66a99a;--gold:#efb85a;--line:#eadfd8;--good:#2f8f65;--bad:#cc5c5c}
+*{box-sizing:border-box}body{margin:0;font-family:"Microsoft JhengHei","Noto Sans TC",system-ui,sans-serif;background:linear-gradient(135deg,#fff8f4,#f5fbf8);color:var(--ink)}
+button,input,select{font:inherit}.app{max-width:1180px;margin:auto;padding:18px}.top{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.brand{font-size:24px;font-weight:900}.sub{color:var(--muted);font-size:14px}.pill{background:#fff;border:1px solid var(--line);padding:8px 12px;border-radius:999px}
+.layout{display:grid;grid-template-columns:250px 1fr;gap:18px;margin-top:16px}.side,.panel{background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:20px;box-shadow:0 8px 30px rgba(80,50,40,.07)}
+.side{padding:14px;align-self:start;position:sticky;top:12px}.side button{width:100%;text-align:left;border:0;background:transparent;padding:11px 12px;border-radius:12px;cursor:pointer;margin:2px 0}.side button.active,.side button:hover{background:#fff0eb;color:#a94339;font-weight:800}
+.panel{padding:20px;min-height:650px}.hero{padding:18px;border-radius:18px;background:linear-gradient(120deg,#fff0eb,#eef9f6);margin-bottom:15px}.hero h1{margin:0 0 6px;font-size:27px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}.card{border:1px solid var(--line);border-radius:16px;padding:15px;background:#fff}.card h3{margin:0 0 8px}.tag{display:inline-block;padding:4px 8px;border-radius:999px;background:#eff8f5;color:#317565;font-size:12px;margin:2px}
+.btn{border:0;border-radius:11px;padding:9px 13px;cursor:pointer;background:var(--accent);color:#fff;font-weight:800}.btn.secondary{background:var(--accent2)}.btn.light{background:#f5eee9;color:#633}.btn:disabled{opacity:.45;cursor:not-allowed}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.lessonblock{margin:18px 0}.lessonblock h2{font-size:21px;border-bottom:2px solid #f1e5de;padding-bottom:7px}.line{padding:9px 11px;background:#faf7f4;border-radius:10px;margin:6px 0}
+.en{font-weight:750}.zh{color:#615e5a}.speak{border:0;background:#eef7f5;border-radius:999px;padding:5px 9px;cursor:pointer}
+.quizbox{max-width:760px}.qtitle{font-size:21px;font-weight:900;margin-bottom:10px}.choices{display:grid;gap:8px}.choice{padding:11px;border:1px solid var(--line);border-radius:12px;background:white;text-align:left;cursor:pointer}.choice:hover{background:#fff6f2}.choice.ok{border-color:#6abb98;background:#effaf4}.choice.no{border-color:#da8a8a;background:#fff1f1}.feedback{min-height:50px;margin:12px 0;padding:10px;border-radius:12px;background:#faf7f4}
+.progress{height:10px;border-radius:999px;background:#eee;overflow:hidden}.bar{height:100%;background:linear-gradient(90deg,var(--accent),var(--gold));width:0}.stat{font-size:28px;font-weight:900}.small{font-size:13px;color:var(--muted)}
+.cloze{line-height:2}.cloze input{width:120px;border:1px solid #cfc8c3;border-radius:8px;padding:5px 7px}.note{padding:12px 14px;border-left:4px solid var(--gold);background:#fff8e8;border-radius:10px;margin:10px 0}
+hr{border:0;border-top:1px solid var(--line);margin:18px 0}.hidden{display:none}
+@media(max-width:780px){.layout{grid-template-columns:1fr}.side{position:static}.side .navgrid{display:grid;grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="top">
+    <div><div class="brand">🦊 AI 家教教室</div><div class="sub">學生：蝦米 ｜ 教材：南一 國中英語 1上 ｜ 已整理至 Lesson 4 P.68</div></div>
+    <div class="row"><span class="pill" id="streak">今日：0 題</span><button class="btn light" onclick="resetProgress()">重設學習紀錄</button></div>
+  </div>
+  <div class="layout">
+    <aside class="side">
+      <div class="navgrid">
+        <button class="active" data-view="home">🏠 學習首頁</button>
+        <button data-view="starter">🌱 Starter</button>
+        <button data-view="l1">🦁 Lesson 1</button>
+        <button data-view="l2">🌍 Lesson 2</button>
+        <button data-view="review">🧠 Review I</button>
+        <button data-view="l3">🍜 Lesson 3</button>
+        <button data-view="l4">🏡 Lesson 4</button>
+        <button data-view="practice">🎯 自適應練習</button>
+        <button data-view="cloze">✍🏻 綜合克漏</button>
+        <button data-view="report">📊 學習報告</button>
+      </div>
+      <hr>
+      <div class="small">朗讀功能使用瀏覽器內建語音。英文優先 en-US／en-GB，中文優先 zh-TW。</div>
+    </aside>
+    <main class="panel" id="main"></main>
+  </div>
+</div>
+<script>
+const lessons = {
+starter:{
+title:"Starter｜P.3–8 基礎暖身", color:"#8157a6",
+sections:[
+["基本問候語",[
+["Good night, Romeo.","晚安，Romeo。"],["How are you?","你好嗎？"],["I'm fine. Thank you.","我很好，謝謝。"],["Nice to meet you.","很高興認識你。"],["Nice to meet you, too.","我也很高興認識你。"],["What's up?","最近怎麼樣？"],["Not much.","沒什麼特別的。"],["How are you doing?","最近好嗎？"],["I'm doing great.","我很好。"]
+]],
+["所有格形容詞與受格",[
+["my / me","我的 / 我"],["your / you","你的 / 你"],["his / him","他的 / 他"],["her / her","她的 / 她"],["its / it","它的 / 它"],["our / us","我們的 / 我們"],["their / them","他們的 / 他們"]
+]],
+["數字 0–9",[
+["zero, one, two, three, four","0, 1, 2, 3, 4"],["five, six, seven, eight, nine","5, 6, 7, 8, 9"],["What's your phone number?","你的電話號碼是多少？"]
+]],
+["書寫格式",[
+["I am Jack. I am from Taiwan.","I 一律大寫；人名與地名首字母大寫。"],["What is your name?","句首大寫，問句結尾使用問號。"],["Hi, my name is Rose.","逗號後留一格；句點前不留空格。"]
+]],
+["查字典技巧",[
+["先找單字第一個字母，再依第二、第三字母排序。","例如 yeti：先找 y，再找 e、t、i。"],["注意詞性、發音、例句與複數形式。","不要只看中文意思。"]
+]]
+]},
+l1:{
+title:"Lesson 1｜What's This?｜P.9–26", color:"#c36a3e",
+sections:[
+["核心字彙",[
+["cat, pig, cow, duck, bird, dog, bear","貓、豬、牛、鴨、鳥、狗、熊"],["show, picture, goose / geese, point, lion, monkey, more","節目、圖片、鵝 / 鵝群、分數、獅子、猴子、更多"],["bee, frog, zebra, elephant, mouse / mice, ant, sheep, goat","蜜蜂、青蛙、斑馬、大象、老鼠 / 老鼠群、螞蟻、綿羊、山羊"],["happy, angry, young, old, clean, dirty","開心、生氣、年輕、年老、乾淨、骯髒"],["strong, brown, hairy, forest, footprint, fruit, favorite","強壯的、棕色的、毛茸茸的、森林、腳印、水果、最喜愛的"]
+]],
+["課文重點",[
+["What is this? It's a goose.","這是什麼？這是一隻鵝。"],["What are these? Those are lions.","這些是什麼？那些是獅子。"],["Is it big and tall? Yes, it is.","它又大又高嗎？是的。"],["You are a smart cookie!","你真聰明！"],["Bigfoot is tall, strong, brown and hairy.","Bigfoot 又高、強壯、棕色而且毛茸茸。"],["The forest is my home. Fruit is my favorite food.","森林是我的家。水果是我最喜歡的食物。"]
+]],
+["Grammar A｜Be 動詞",[
+["I am / You are / He, She, It is / We, They are","主詞不同，be 動詞跟著變化。"],["Are you happy? Yes, I am. / No, I'm not.","疑問句把 be 動詞移到主詞前。"],["Is he Joe? Yes, he is. / No, he isn't.","簡答仍要保留 be 動詞。"]
+]],
+["Grammar B｜this / that",[
+["This is a ball. That is a ball.","this 近、that 遠。"],["What is this? It's an orange.","a / an 依後面單字起始音判斷。"]
+]],
+["Grammar C｜these / those 與複數",[
+["These are apples. Those are apples.","these 近的複數；those 遠的複數。"],["cat→cats, box→boxes, baby→babies, wife→wives","常見複數規則。"],["man→men, woman→women, goose→geese, mouse→mice","不規則複數。"],["fish→fish, sheep→sheep","單複數同形。"]
+]],
+["發音",[
+["he / tea / feet / these","長母音 /i/"],["it / chicken / tin / hit","短母音 /ɪ/"],["pencil / jump / back / rob","子音 p / b 對比。"]
+]]
+]},
+l2:{
+title:"Lesson 2｜Where Is Annie From?｜P.27–42", color:"#d56a43",
+sections:[
+["核心情境",[
+["Where is the picture from? It's from Japan.","圖片來自哪裡？來自日本。"],["postcard, the USA, year(s) old, famous, beautiful","明信片、美國、歲、有名的、漂亮的"],["all over the world, hard, easy, late, tomorrow","世界各地、困難的、簡單的、遲到的、明天"],["It's a piece of cake.","小菜一碟，很簡單。"]
+]],
+["對話重點",[
+["Who's Annie? She's a friend from the USA.","Annie 是誰？她是來自美國的朋友。"],["How old is she? She's thirteen years old.","她幾歲？她十三歲。"],["Where is he from? He's from Japan.","他從哪裡來？他來自日本。"],["Your friends are from all over the world.","你的朋友來自世界各地。"]
+]],
+["Family Tree 與職業",[
+["farmer, housewife, clerk, actress, cook, doctor, nurse, teacher, student","農夫、家庭主婦、職員、女演員、廚師、醫生、護士、老師、學生"],["father, mother, son, daughter, husband, wife, brother, sister","父親、母親、兒子、女兒、丈夫、妻子、兄弟、姊妹"]
+]],
+["Reading｜Annie 的明信片",[
+["I am a junior high school student from the USA.","我是來自美國的國中生。"],["Walt Disney World is my favorite theme park.","華特迪士尼世界是我最喜歡的主題樂園。"],["Mickey Mouse is my favorite cartoon star.","米奇是我最喜歡的卡通明星。"],["Come and have a great time!","來好好玩一趟吧！"]
+]],
+["Grammar｜Who / Where / How old",[
+["Who is she? She is Mandy.","who 問人。"],["Where is Sakura from? She's from Japan.","where 問地點或來源。"],["How old are they? They're sixty-eight years old.","how old 問年齡。"],["10–19: ten...nineteen; 20,30...90: twenty, thirty...ninety","數字 10–99 要熟悉拼法。"]
+]],
+["發音",[
+["father / hot / love / mother / bus / duck","母音 /ɑ/ 與 /ʌ/ 對比。"],["fan / leaf / van / save","子音 /f/ 與 /v/ 對比。"]
+]]
+]},
+review:{
+title:"Review I｜P.43–44", color:"#8a6d9c",
+sections:[
+["Vocabulary",[
+["geese, farmer, forest, housewife, husband, mice, actress, clerk","Lesson 1–2 綜合單字。"]
+]],
+["Question words",[
+["Where are you from?","問地點"],["Who is he?","問人物／關係"],["What is it?","問事物"],["How old is your daughter?","問年齡"]
+]],
+["Reading",[
+["Tina Wang is from Taiwan and lives with the Brown family in the USA.","練習姓名、國籍、家庭角色與職業資訊整合。"]
+]]
+]},
+l3:{
+title:"Lesson 3｜Please Bring Your Favorite Dish｜P.45–60", color:"#4d9e8c",
+sections:[
+["派對與祝賀語",[
+["Congratulations!","恭喜！"],["Happy birthday!","生日快樂！"],["Merry Christmas!","聖誕快樂！"],["Let's eat!","開動吧！"],["Happy Halloween!","萬聖節快樂！"],["Happy New Year!","新年快樂！"]
+]],
+["Dialogue｜Jason's potluck",[
+["Please put your dish on the table.","請把你的菜放在桌上。"],["Let's try the beef noodles.","我們來試試牛肉麵。"],["Let's use chopsticks.","我們用筷子吧。"],["Just give it a shot!","試試看嘛！"],["Don't use chopsticks. Just use your hands.","不要用筷子，直接用手。"],["Just bring TWO dishes next time.","下次帶兩道菜就好。"]
+]],
+["核心字彙",[
+["please, put, dish, let's, try, beef noodles, use, chopsticks","請、放、菜餚、讓我們、嘗試、牛肉麵、使用、筷子"],["delicious, guys, just, hand, bring","美味的、大家、只是／就、手、帶"],["talk, party, invite, join, glass, bowl, spoon, menu, fork, plate, knife","說話、派對、邀請、參加、玻璃杯、碗、湯匙、菜單、叉子、盤子、刀"]
+]],
+["Reading｜邀請信",[
+["Please come to my house for a potluck.","請來我家參加百樂餐。"],["It's on Double Tenth Day, from 11 a.m. to 3 p.m.","時間是雙十節上午十一點到下午三點。"],["Please bring your favorite dish and wear something from your country.","請帶最喜歡的菜，並穿戴有自己國家特色的東西。"],["Don't bring any drinks.","不要帶飲料。"],["Halloween is just around the corner.","萬聖節快到了。"]
+]],
+["Grammar A/B/C",[
+["Please come in. / Come in, please.","please 可放句首或句尾。"],["Please don't talk. / Don't talk, please.","否定祈使句用 don't + 原形動詞。"],["Let's sing. / Let's not go there.","Let's + 原形；Let's not + 原形。"]
+]],
+["發音",[
+["take / name / play / eight / grey","長母音 /eɪ/"],["bed / sell vs bad / sad","/ɛ/ 與 /æ/ 對比。"],["too / do, sip / zip","t/d、s/z 子音對比。"]
+]]
+]},
+l4:{
+title:"Lesson 4｜There Are Some Animals in the Game｜P.61–68（目前收到）", color:"#3c9688",
+sections:[
+["Get Ready｜動物的家",[
+["Dr. Wildman is an animal doctor.","Wildman 醫生是一位獸醫。"],["There are some animals in his house.","他的房子裡有一些動物。"],["kitchen, bedroom, bathroom, living room, dining room","廚房、臥室、浴室、客廳、飯廳"]
+]],
+["Dialogue｜Gift Hunt",[
+["Surprise! Let's play a game.","驚喜！我們來玩遊戲。"],["It's a gift hunt. Your gifts are inside the house.","這是尋寶遊戲，禮物都在屋子裡。"],["My gift is on the table.","我的禮物在桌上。"],["Is it a banana pin? Yes.","是一個香蕉別針嗎？是。"],["Dr. Wildman, my gift is under a chair.","我的禮物在椅子下面。"],["It's in your jacket!","它在你的外套裡。"],["Let's get the ball rolling!","開始行動吧！／讓事情動起來。"]
+]],
+["核心字彙",[
+["animal, surprise, love, gift, hunt, inside","動物、驚喜、愛、禮物、尋找、在裡面"],["pin, lunch, again, so, kind, jacket","別針、午餐、再一次、如此、親切的、外套"],["bamboo, Thanksgiving","竹子、感恩節"]
+]],
+["Word Power｜房間與位置",[
+["bathroom, bedroom, living room, window, sofa, dining room, kitchen","浴室、臥室、客廳、窗戶、沙發、飯廳、廚房"],["swimming pool, garden, garage","游泳池、花園、車庫"],["behind, in front of, between, next to, under, on, in","在後面、在前面、在中間、在旁邊、在下面、在上面、在裡面"]
+]]
+]}
+};
+
+const questions = [
+{l:"starter",k:"vocab",q:"How are you? 最適合的回應是？",c:["I'm fine. Thank you.","Good night.","My name is Tina.","It's a duck."],a:0,e:"How are you? 是問候近況。"},
+{l:"starter",k:"grammar",q:"「她的名字」應該用哪一個？",c:["his name","her name","him name","she name"],a:1,e:"所有格形容詞 her 放在名詞 name 前。"},
+{l:"starter",k:"number",q:"數字 8 的英文是？",c:["eight","eighteen","eighty","ate"],a:0,e:"8 = eight。"},
+{l:"starter",k:"writing",q:"哪一句書寫格式正確？",c:["i am jack.","I am Jack.","I Am jack.","i am Jack"],a:1,e:"I 永遠大寫，人名 Jack 首字母大寫，句尾加句點。"},
+{l:"l1",k:"vocab",q:"goose 的複數是？",c:["gooses","geese","goosees","geeses"],a:1,e:"goose → geese，是不規則複數。"},
+{l:"l1",k:"grammar",q:"___ are apples.（這些，近處）",c:["This","That","These","Those"],a:2,e:"these 是近處複數。"},
+{l:"l1",k:"grammar",q:"What ___ this?",c:["am","is","are","be"],a:1,e:"this 是單數，搭配 is。"},
+{l:"l1",k:"grammar",q:"box 的複數是？",c:["boxs","boxes","boxies","boxen"],a:1,e:"字尾 x 通常加 -es。"},
+{l:"l1",k:"grammar",q:"baby 的複數是？",c:["babys","babyes","babies","babyes"],a:2,e:"子音+y：去 y 加 ies。"},
+{l:"l1",k:"reading",q:"Bigfoot 最喜歡的食物是？",c:["meat","fruit","cookies","eggs"],a:1,e:"閱讀中寫著 Fruit is my favorite food."},
+{l:"l1",k:"vocab",q:"hairy 的意思是？",c:["乾淨的","毛茸茸的","年輕的","生氣的"],a:1,e:"hairy = 毛茸茸的。"},
+{l:"l1",k:"idiom",q:"You are a smart cookie! 意思最接近？",c:["你很餓","你很聰明","你很甜","你很慢"],a:1,e:"smart cookie 是稱讚人聰明。"},
+{l:"l2",k:"grammar",q:"___ is Annie from?",c:["Who","What","Where","How old"],a:2,e:"問來源地點用 Where。"},
+{l:"l2",k:"grammar",q:"___ is she? She's thirteen years old.",c:["What","Who","How old","Where"],a:2,e:"問年齡用 How old。"},
+{l:"l2",k:"vocab",q:"actress 是？",c:["女演員","護士","家庭主婦","職員"],a:0,e:"actress = 女演員。"},
+{l:"l2",k:"reading",q:"Annie 在閱讀中來自哪裡？",c:["Taiwan","Japan","the USA","India"],a:2,e:"Annie 是來自 the USA 的國中生。"},
+{l:"l2",k:"idiom",q:"It's a piece of cake. 意思是？",c:["這是蛋糕","非常簡單","非常昂貴","非常美味"],a:1,e:"piece of cake 是『很容易』。"},
+{l:"l2",k:"number",q:"68 的英文是？",c:["sixty-eight","sixteen-eight","eighty-six","six-eight"],a:0,e:"68 = sixty-eight。"},
+{l:"review",k:"review",q:"Who is the boy? 最合理的回答是？",c:["He's from the USA.","He is my brother.","She's one year old.","It's a goat."],a:1,e:"Who 問人或關係。"},
+{l:"review",k:"review",q:"Are those lions? 否定回答可說？",c:["Yes, it is.","No, they are tigers.","He's my brother.","She's one year old."],a:1,e:"those 是複數，回答用 they。"},
+{l:"l3",k:"vocab",q:"chopsticks 是？",c:["叉子","湯匙","筷子","刀子"],a:2,e:"chopsticks = 筷子。"},
+{l:"l3",k:"grammar",q:"否定祈使句正確的是？",c:["Not talk.","Don't talk.","Doesn't talk.","No talking you."],a:1,e:"Don't + 原形動詞。"},
+{l:"l3",k:"grammar",q:"「我們不要去那裡」應該說？",c:["Let's don't go there.","Let's not go there.","Don't let's go there.","Let's no go there."],a:1,e:"Let's not + 原形動詞。"},
+{l:"l3",k:"reading",q:"Jason 的 potluck 幾點開始？",c:["8 a.m.","11 a.m.","1 p.m.","3 p.m."],a:1,e:"邀請信寫 11 a.m. to 3 p.m."},
+{l:"l3",k:"reading",q:"Jason 的邀請信說不要帶什麼？",c:["dish","clothes","drinks","friends"],a:2,e:"Don't bring any drinks."},
+{l:"l3",k:"idiom",q:"Give it a shot! 意思最接近？",c:["丟掉它","試試看","拍一張照","喝一口"],a:1,e:"give it a shot = 試試看。"},
+{l:"l3",k:"vocab",q:"knife 的複數是？",c:["knifes","knifies","knives","knifees"],a:2,e:"knife → knives。"},
+{l:"l4",k:"vocab",q:"garage 是？",c:["花園","車庫","浴室","客廳"],a:1,e:"garage = 車庫。"},
+{l:"l4",k:"prep",q:"under 的意思是？",c:["在上面","在旁邊","在下面","在中間"],a:2,e:"under = 在……下面。"},
+{l:"l4",k:"prep",q:"between 的意思是？",c:["在兩者之間","在前面","在後面","在裡面"],a:0,e:"between = 在兩者之間。"},
+{l:"l4",k:"reading",q:"Gift hunt 中，Wildman 的禮物在哪裡？",c:["on the table","under a chair","in the garden","next to the sofa"],a:1,e:"對話中說 my gift is under a chair."},
+{l:"l4",k:"idiom",q:"Let's get the ball rolling! 意思最接近？",c:["開始行動吧","去踢球吧","把球藏起來","停止遊戲"],a:0,e:"get the ball rolling = 讓事情開始進行。"}
+];
+
+const clozes = [
+{title:"Lesson 2 明信片",text:"Hello Tina, My name is Annie. I am a junior high school student from the __1__. Walt Disney World is my favorite theme __2__. Mickey Mouse is my favorite cartoon __3__. Come and have a great __4__!",ans:["usa","park","star","time"],help:"提示：USA / park / star / time"},
+{title:"Lesson 3 Potluck",text:"Hey everyone, Please come to my __1__ for a potluck. Please bring your favorite __2__ and wear something from your __3__. Don't bring any __4__. Let's have __5__!",ans:["house","dish","country","drinks","fun"],help:"提示：house / dish / country / drinks / fun"},
+{title:"Lesson 4 房子位置",text:"There is a TV in the living room. There is a brown rabbit __1__ the hat. The garage is __2__ the house. A gift is __3__ a chair.",ans:["under","next to","under"],help:"提示：under / next to"}
+];
+
+let state = JSON.parse(localStorage.getItem("xiaMiEnglishProgress")||'{"done":0,"correct":0,"wrong":{},"seen":{},"today":0}');
+let currentView="home", selectedLesson="all";
+
+function save(){localStorage.setItem("xiaMiEnglishProgress",JSON.stringify(state));document.getElementById("streak").textContent="今日："+(state.today||0)+" 題";}
+function speak(text,lang){
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);u.lang=lang;
+  const vs=speechSynthesis.getVoices();
+  const pref=lang==="zh-TW"?vs.find(v=>v.lang==="zh-TW")||vs.find(v=>v.lang.startsWith("zh")):vs.find(v=>v.lang==="en-US")||vs.find(v=>v.lang==="en-GB")||vs.find(v=>v.lang.startsWith("en"));
+  if(pref)u.voice=pref;u.rate=.88;speechSynthesis.speak(u);
+}
+function lessonHTML(key){
+ const L=lessons[key];
+ return '<div class="hero"><h1>'+L.title+'</h1><div class="sub">先看、先聽、理解後再做題，不急著背。</div></div>'+
+ L.sections.map(s=>'<section class="lessonblock"><h2>'+s[0]+'</h2>'+s[1].map(x=>'<div class="line"><div class="row"><span class="en">'+x[0]+'</span><button class="speak" onclick="speak('+JSON.stringify(x[0])+',\'en-US\')">🔊 英</button><button class="speak" onclick="speak('+JSON.stringify(x[1])+',\'zh-TW\')">🔊 中</button></div><div class="zh">'+x[1]+'</div></div>').join('')+'</section>').join('');
+}
+function home(){
+ const pct=state.done?Math.round(state.correct/state.done*100):0;
+ return '<div class="hero"><h1>蝦米今天想從哪裡開始？ 🐥📚</h1><div>目前整理到 <b>Lesson 4 P.68</b>。可以先學教材，再進自適應題庫。</div></div>'+
+ '<div class="grid"><div class="card"><div class="small">累積作答</div><div class="stat">'+state.done+'</div></div><div class="card"><div class="small">正確率</div><div class="stat">'+pct+'%</div></div><div class="card"><div class="small">待複習錯題</div><div class="stat">'+Object.keys(state.wrong||{}).filter(k=>state.wrong[k]>0).length+'</div></div></div>'+
+ '<div class="lessonblock"><h2>學習順序</h2><div class="grid">'+Object.keys(lessons).map(k=>'<div class="card"><h3>'+lessons[k].title.split("｜")[0]+'</h3><div class="small">'+lessons[k].title+'</div><br><button class="btn secondary" onclick="go(\''+k+'\')">開始這單元</button></div>').join('')+'</div></div>'+
+ '<div class="note">💡 這版先把目前收到的 P.3–68 整理成可用教學系統。Lesson 4 後半還沒收到，所以不亂補不存在的課本內容。</div>';
+}
+let currentQ=null;
+function pickQuestion(){
+ const pool=questions.filter(q=>selectedLesson==="all"||q.l===selectedLesson);
+ const weighted=[];
+ pool.forEach((q,i)=>{const id=questions.indexOf(q);let w=1+(state.wrong[id]||0)*4+(state.seen[id]?0:3);for(let n=0;n<w;n++)weighted.push(q)});
+ return weighted[Math.floor(Math.random()*weighted.length)];
+}
+function practice(){
+ return '<div class="hero"><h1>🎯 自適應練習</h1><div>錯題與沒做過的題目會比較容易再次出現。</div></div>'+
+ '<div class="row"><label>範圍：</label><select id="lessonSel" onchange="selectedLesson=this.value;nextQ()"><option value="all">全部</option>'+Object.keys(lessons).map(k=>'<option value="'+k+'" '+(selectedLesson===k?'selected':'')+'>'+lessons[k].title.split("｜")[0]+'</option>').join('')+'</select><button class="btn light" onclick="nextQ()">換一題</button></div><hr><div id="quizArea"></div>';
+}
+function nextQ(){
+ currentQ=pickQuestion();const id=questions.indexOf(currentQ);state.seen[id]=1;save();
+ const a=document.getElementById("quizArea");if(!a)return;
+ a.innerHTML='<div class="quizbox"><div class="small">'+lessons[currentQ.l].title+'</div><div class="qtitle">'+currentQ.q+'</div><div class="choices">'+currentQ.c.map((x,i)=>'<button class="choice" onclick="answerQ('+i+',this)">'+String.fromCharCode(65+i)+'. '+x+'</button>').join('')+'</div><div class="feedback" id="feedback">選一個答案 👀</div><button class="btn secondary" onclick="nextQ()">下一題</button></div>';
+}
+function answerQ(i,btn){
+ const id=questions.indexOf(currentQ);const all=[...document.querySelectorAll(".choice")];all.forEach(b=>b.disabled=true);
+ state.done++;state.today=(state.today||0)+1;
+ if(i===currentQ.a){state.correct++;btn.classList.add("ok");state.wrong[id]=Math.max(0,(state.wrong[id]||0)-1);document.getElementById("feedback").innerHTML="✅ 答對了！ "+currentQ.e;}
+ else{btn.classList.add("no");all[currentQ.a].classList.add("ok");state.wrong[id]=(state.wrong[id]||0)+1;document.getElementById("feedback").innerHTML="🥺 這題先記起來："+currentQ.e;}
+ save();
+}
+function clozeView(){
+ return '<div class="hero"><h1>✍🏻 綜合克漏</h1><div>不是只按選項，要自己拼出關鍵字。</div></div>'+
+ clozes.map((z,zi)=>{let t=z.text.replace(/__(\d+)__/g,(m,n)=>'<input id="c'+zi+'_'+n+'" autocomplete="off">');return '<div class="card" style="margin-bottom:14px"><h3>'+z.title+'</h3><div class="cloze">'+t+'</div><div class="small">'+z.help+'</div><br><button class="btn" onclick="checkCloze('+zi+')">檢查</button> <span id="cr'+zi+'"></span></div>'}).join('');
+}
+function checkCloze(zi){const z=clozes[zi];let ok=0;z.ans.forEach((a,i)=>{const el=document.getElementById("c"+zi+"_"+(i+1));if(el&&el.value.trim().toLowerCase()===a.toLowerCase()){ok++;el.style.borderColor="#58a87c"}else if(el)el.style.borderColor="#d26d6d"});document.getElementById("cr"+zi).textContent="答對 "+ok+" / "+z.ans.length;}
+function report(){
+ const pct=state.done?Math.round(state.correct/state.done*100):0;
+ const wrong=Object.entries(state.wrong||{}).filter(x=>x[1]>0).sort((a,b)=>b[1]-a[1]);
+ return '<div class="hero"><h1>📊 學習報告</h1></div><div class="grid"><div class="card"><div class="small">累積作答</div><div class="stat">'+state.done+'</div></div><div class="card"><div class="small">正確</div><div class="stat">'+state.correct+'</div></div><div class="card"><div class="small">正確率</div><div class="stat">'+pct+'%</div></div></div><section class="lessonblock"><h2>錯題優先清單</h2>'+(wrong.length?wrong.slice(0,10).map(x=>'<div class="line"><b>'+questions[x[0]].q+'</b><div class="small">目前錯題權重：'+x[1]+' ｜ '+questions[x[0]].e+'</div></div>').join(''):'<div class="note">目前沒有待複習錯題 ✨</div>')+'</section>';
+}
+function render(){
+ document.querySelectorAll(".side button[data-view]").forEach(b=>b.classList.toggle("active",b.dataset.view===currentView));
+ const m=document.getElementById("main");
+ if(currentView==="home")m.innerHTML=home();
+ else if(lessons[currentView])m.innerHTML=lessonHTML(currentView);
+ else if(currentView==="practice"){m.innerHTML=practice();setTimeout(nextQ,0)}
+ else if(currentView==="cloze")m.innerHTML=clozeView();
+ else if(currentView==="report")m.innerHTML=report();
+ save();
+}
+function go(v){currentView=v;render();window.scrollTo({top:0,behavior:"smooth"})}
+document.querySelectorAll(".side button[data-view]").forEach(b=>b.onclick=()=>go(b.dataset.view));
+function resetProgress(){if(confirm("確定要清除蝦米目前的本機學習紀錄嗎？")){state={done:0,correct:0,wrong:{},seen:{},today:0};save();render()}}
+save();render();
+</script>
+</body>
+</html>
